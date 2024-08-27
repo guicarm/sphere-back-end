@@ -7,5 +7,4 @@ CREATE TABLE IF NOT EXISTS users (
     created_at datetime,
     updated_at datetime,
     primary key (id)
-
-    );
+);
