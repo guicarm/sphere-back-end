@@ -20,6 +20,7 @@ public class SecurityConfig {
                 //.requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .requestMatchers(HttpMethod.POST, "/posts").authenticated()
+                .anyRequest().authenticated()
         );
 
         // Filtro CSRF
