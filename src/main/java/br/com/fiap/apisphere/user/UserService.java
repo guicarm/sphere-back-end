@@ -1,5 +1,6 @@
 package br.com.fiap.apisphere.user;
 
+import br.com.fiap.apisphere.mail.MailService;
 import br.com.fiap.apisphere.user.dto.UserProfileResponse;
 
 import org.apache.catalina.connector.Response;
@@ -28,6 +29,9 @@ public class UserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    MailService mailService;
 
     // GET - findByNameContainingIgnoreCase
     public List<User> findByNameContainingIgnoreCase(String name){

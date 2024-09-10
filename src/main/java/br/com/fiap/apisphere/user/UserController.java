@@ -4,6 +4,7 @@ import br.com.fiap.apisphere.user.dto.UserProfileResponse;
 import br.com.fiap.apisphere.user.dto.UserRequest;
 import br.com.fiap.apisphere.user.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/users")
@@ -20,8 +22,9 @@ public class UserController {
     UserService service;
 
     @GetMapping
-    public List<User> findAll(){
-        return service.findAll();
+    public List<User> findByName(@RequestParam(required = false) String name){
+        System.out.println(name);
+        return service.findByNameContainingIgnoreCase(name);
     }
 
     @PostMapping
@@ -50,4 +53,9 @@ public class UserController {
         service.uploadAvatar(email, file);
     }
 
+    @GetMapping("avatar/{filename}")
+    public ResponseEntity<Resource> getAvatar(@PathVariable String filename) {
+        return service.getAvatar(filename);
+    }
+    
 }
