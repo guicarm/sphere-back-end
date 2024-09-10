@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 //.requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                .requestMatchers(HttpMethod.POST, "/posts").authenticated()
+                .requestMatchers(HttpMethod.GET, "/users/avatar/**").permitAll()
                 .anyRequest().authenticated()
         );
 
